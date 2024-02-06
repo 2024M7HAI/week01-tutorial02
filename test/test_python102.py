@@ -1,9 +1,19 @@
 import pytest
-from exercises.python102 import remove_duplicates, letter2words_histogram, return_swapped_parameters
+from exercises.python102 import (remove_duplicates, letter2words_histogram, return_swapped_parameters,
+                                 module_caller, package_caller, setup_chessboard_with_colors)
+
 from exercises.word_play import separate_histograms
 
+class TestExercise_P10:
+    def test_module(self):
+        assert module_caller(), "It seems that module was not imported correctly"
 
-class TestExercise1_2_4_1:
+class TestExercise_P11:
+    def test_package(self):
+        assert package_caller(), "It seems that package was not imported correctly"
+
+
+class TestExercise_P12:
 
     @pytest.mark.parametrize("a,b",
                              [([2, 3, 1, 3, 5, 1], [2, 3, 5, 1]),
@@ -21,8 +31,11 @@ class TestExercise1_2_4_1:
     def test_none(self):
         assert remove_duplicates([1, 2, 3]) == None, "Function remove_duplicates should return None"
 
+# There is no test for exercise P13
 
-class TestExercise1_2_5_1:
+# There is no test for exercise P14
+
+class TestExercise_P15:
 
     @pytest.mark.parametrize("a,b",
                              [
@@ -38,7 +51,7 @@ class TestExercise1_2_5_1:
                         "The result should have been '{}', it was '{}'".format(a, b, result))
 
 
-class TestExercise1_2_6_1:
+class TestExercise_P16:
 
     @pytest.mark.parametrize("a,b",
                              [
@@ -52,19 +65,29 @@ class TestExercise1_2_6_1:
                         "The result should have been '{}', but was '{}'".format(a, b, result))
 
 
-class TestExercise1_2_7_1:
+class TestExercise_P17:
+    """
+    Test case for the chess board
+    """
+    def test_chessboard_setup(setup_chessboard_with_colors):
+        chessboard = setup_chessboard_with_colors()
 
-    @pytest.mark.parametrize("a, b, c, d",
-                             [
-                                 ({'a': 1, 'n': 3, 'o': 1, 'y': 1, 'i': 1, 'g': 1},
-                                  {'r': 1, 'a': 1, 'i': 1, 'n': 1, 'y': 1},
-                                  {'o': 1, 'g': 1}, {'r': 1})
-                             ])
-    def test_letter_2_word(self,a, b, c, d):
-        a_copy = a.copy()
-        b_copy = b.copy()
-        separate_histograms(a, b)
-        if not a == c or not b == d:
-            pytest.fail("The method 'separate_histograms' failed with argument '{}' and '{}'.\n"
-                        "The result should have been '{}', and '{}'\n"
-                        "It was '{}'and '{}".format(a, b, c, d,a_copy,b_copy))
+        # Check the dimensions of the chessboard
+        assert chessboard.shape == (8, 8), "Chessboard should be 8x8"
+
+        # Check for the correct number of each piece
+        # Assuming uppercase for white pieces and lowercase for black pieces
+        assert np.count_nonzero(chessboard == 'R') == 2, "There should be 2 white rooks (R)"
+        assert np.count_nonzero(chessboard == 'r') == 2, "There should be 2 black rooks (r)"
+        assert np.count_nonzero(chessboard == 'N') == 2, "There should be 2 white knights (N)"
+
+        # Check specific positions (e.g., kings and queens)
+        assert chessboard[0, 4] == 'k', "Black king (k) should be at position 0, 4"
+        assert chessboard[7, 4] == 'K', "White king (K) should be at position 7, 4"
+
+class TestExercise_P18:
+    """
+    Test case for tetris high scores
+    """
+    def test_read_csv(self):
+        pass

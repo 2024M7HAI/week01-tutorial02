@@ -59,6 +59,27 @@ def return_swapped_parameters(a, b):
     pass
 
 
+def print_chessboard(chessboard):
+    """
+    Prints a given chessboard that is an 8x8 numpy array
+    You can use this to test your implementation of exercise P17
+    """
+    print("  a b c d e f g h")
+    print("  -----------------")
+    row_number = 8
+    for row in chessboard:
+        # Convert each element to a string, replacing empty strings (from '0.0') with a dot '.'
+        formatted_row = ['.' if cell == '0.0' else cell for cell in row]
+        print(f"{row_number}| {' '.join(formatted_row)} |")
+        row_number -= 1
+    print("  -----------------")
+
+def setup_chessboard_with_colors():
+    """
+    Stub for P17
+    """
+    pass
+
 if __name__ == "__main__":
     print(module_caller())
     print(package_caller())
