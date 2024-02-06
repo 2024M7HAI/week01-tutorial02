@@ -1,4 +1,5 @@
 import pytest
+import numpy as np
 from exercises.python102 import (remove_duplicates, letter2words_histogram, return_swapped_parameters,
                                  module_caller, package_caller, setup_chessboard_with_colors)
 
