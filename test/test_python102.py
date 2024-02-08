@@ -3,8 +3,6 @@ import numpy as np
 from exercises.python102 import (remove_duplicates, letter2words_histogram, return_swapped_parameters,
                                  module_caller, package_caller, setup_chessboard_with_colors)
 
-from exercises.word_play import separate_histograms
-
 class TestExercise_P10:
     def test_module(self):
         assert module_caller(), "It seems that module was not imported correctly"
