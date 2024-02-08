@@ -70,7 +70,7 @@ class TestExercise_P17:
     """
     Test case for the chess board
     """
-    def test_chessboard_setup(setup_chessboard_with_colors):
+    def test_chessboard_setup(self):
         chessboard = setup_chessboard_with_colors()
 
         # Check the dimensions of the chessboard
